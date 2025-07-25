@@ -23,3 +23,6 @@ jobs:
 
       - name: Build
         run: ./mvnw verify -B
+
+      - name: Docker Build
+        run: docker build -f src/main/docker/Dockerfile.jvm -t ghcr.io/ffaarno/code-with-quarkus:${{ github.sha }} .
