@@ -26,3 +26,9 @@ jobs:
 
       - name: Docker Build
         run: docker build -f src/main/docker/Dockerfile.jvm -t ghcr.io/ffaarno/code-with-quarkus:${{ github.sha }} .
+
+      - name: Docker Login
+        run: echo ${{ secrets.ACTION_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Docker Push
+        run: docker push ghcr.io/ffaarno/code-with-quarkus:${{ github.sha }}
