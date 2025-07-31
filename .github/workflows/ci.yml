@@ -32,6 +32,7 @@ jobs:
 
   maven-unit:
     runs-on: ubuntu-latest
+    needs: maven-build
     steps:
       - uses: actions/checkout@v4
 
@@ -47,6 +48,7 @@ jobs:
 
   maven-it:
     runs-on: ubuntu-latest
+    needs: maven-build
     steps:
       - uses: actions/checkout@v4
 
@@ -62,7 +64,7 @@ jobs:
 
   docker:
     runs-on: ubuntu-latest
-    needs: [maven-build, maven-unit, maven-it]
+    needs: [maven-unit, maven-it]
     steps:
       - uses: actions/checkout@v4
 
