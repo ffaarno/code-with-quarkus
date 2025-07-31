@@ -56,6 +56,7 @@ jobs:
 
   docker:
     runs-on: ubuntu-latest
+    needs: [maven-build, maven-unit, maven-it]
     steps:
       - name: Docker Build
         run: docker build -f src/main/docker/Dockerfile.jvm -t ghcr.io/ffaarno/code-with-quarkus:${{ github.sha }} .
